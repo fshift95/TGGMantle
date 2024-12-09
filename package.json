@@ -1,0 +1,14 @@
+{
+  "name": "tgmantle",
+  "version": "1.0.7",
+  "description": "A 2d game using telegram and Mantle Network",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "2dgame"
+  ],
+  "author": "fshift95",
+  "license": "ISC"
+}
