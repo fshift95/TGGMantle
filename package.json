@@ -10,11 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@biconomy/mexa": "^2.0.38",
+    "@biconomy/sdk": "^0.0.19",
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@metamask/sdk-react-ui": "^0.29.2",
+    "@rhinestone/module-sdk": "^0.1.31",
     "@vkruglikov/react-telegram-web-app": "^2.1.9",
     "ethers": "^6.13.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "viem": "^2.21.55",
     "web3": "^4.16.0"
   },
   "devDependencies": {
@@ -23,6 +28,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.22",
     "eslint": "^9.15.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",

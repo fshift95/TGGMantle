@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
 }
 
+.bg-custom {
+  background-size: cover;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

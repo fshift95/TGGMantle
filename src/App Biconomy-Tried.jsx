@@ -13,9 +13,12 @@ import {
 import { Wallet, ethers } from "ethers";
 import { useEffect, useState } from "react";
 import SendMTransaction from "./Components/SendTransaction";
-import WriteTransaction from "./Components/WriteTransaction";
-import Start from "./Components/Pages/Start";
-import Page1 from "./Components/Pages/Page1";
+import { Biconomy } from "@biconomy/mexa";
+
+import { createNexusClient, createBicoPaymasterClient } from "@biconomy/sdk";
+import { baseSepolia, mantleSepoliaTestnet, mantleTestnet } from "viem/chains";
+import { http, parseEther } from "viem";
+import { privateKeyToAccount, generatePrivateKey } from "viem/accounts";
 
 // const privateKey = generatePrivateKey();
 // const account = privateKeyToAccount(`${privateKey}`);
@@ -33,6 +36,48 @@ function newWallet() {
   // return wallet;
 }
 
+async function checkTX(params) {
+  const bundlerUrl =
+    "https://bundler.biconomy.io/api/v2/5003/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44";
+  const paymasterUrl =
+    "https://paymaster.biconomy.io/api/v1/5003/VOyh93jty.7c99111d-083c-4802-ad8a-8f22779097eb";
+
+  const provider = new ethers.BrowserProvider(window.ethereum);
+
+  const biconomy = new Biconomy(window.ethereum, {
+    apiKey: "VOyh93jty.7c99111d-083c-4802-ad8a-8f22779097eb",
+    contractAddresses: "0xf8a80b46fa1cd68e061e60b5f71bdde32b7f3440",
+  });
+  await biconomy.init();
+
+  const signer = await biconomy.getSigner();
+
+  const nexusClient = await createNexusClient({
+    signer: signer,
+    chain: mantleSepoliaTestnet,
+    transport: http(),
+    bundlerTransport: http(bundlerUrl),
+    paymaster: createBicoPaymasterClient({ paymasterUrl }),
+  });
+
+  const hash = await nexusClient.sendTransaction({
+    calls: [
+      {
+        to: "0xf8a80b46fa1cd68e061e60b5f71bdde32b7f3440",
+        value: parseEther("0.0001"),
+      },
+      {
+        abi: abi,
+        functionName: "setScore",
+        score: "5",
+
+        to: "0xf8a80b46fa1cd68e061e60b5f71bdde32b7f3440",
+      },
+    ],
+  });
+  console.log("Transaction hash: ", hash);
+  const receipt = await nexusClient.waitForTransactionReceipt({ hash });
+}
 async function addMAntle() {
   try {
     await window.ethereum // Or window.ethereum if you don't support EIP-6963.
@@ -70,14 +115,7 @@ function AppReady(customeProvider) {
     signer: null,
     contract: null,
   });
-  const [page, setPage] = useState({
-    pageNumber: 0,
-  });
 
-  const changePage = (pageNumber) => {
-    console.log("page is  ", pageNumber);
-    setPage({ pageNumber });
-  };
   useEffect(() => {
     const template = async () => {
       // const biconomy = new Biconomy(providerr, {
@@ -128,34 +166,35 @@ function AppReady(customeProvider) {
   const { isConnected } = useAccount();
   // fromm https://github.com/MetaMask/metamask-sdk/blob/main/packages/examples/react-metamask-button/src/App.js
   return (
-    <div className="App  w-full flex flex-col jestify-center items-center">
-      {page.pageNumber == 0 ? <Start changePage={changePage} /> : null}
-      {page.pageNumber == 1 ? <Page1 changePage={changePage} /> : null}
-      <header className="App-header w-full">
-        {/* <MetaMaskButton theme={"light"} color="white"></MetaMaskButton> */}
+    <div className="App">
+      <header className="App-header">
+        <MetaMaskButton theme={"light"} color="white"></MetaMaskButton>
         {isConnected && (
-          <div style={{ marginTop: 20 }} className="w-full">
-            <button disabled={isSignLoading} onClick={() => signMessage()}>
-              Sign message
-            </button>
+          <>
+            <div style={{ marginTop: 20 }}>
+              <button disabled={isSignLoading} onClick={() => signMessage()}>
+                Sign message
+              </button>
 
-            <div onClick={addMAntle} className="">
-              addMAntle
+              <div onClick={addMAntle} className="">
+                addMAntle
+              </div>
+              <div onClick={checkTX} className="">
+                TX ssss
+              </div>
+              <div>
+                <SendMTransaction state={state} />
+              </div>
+              <div
+                className="cursor-pointer p-2 rounded bg-red-200 "
+                onClick={newWallet}
+              >
+                NewWallet
+              </div>
+              {isSignSuccess && <div>Signature: {signData}</div>}
+              {isSignError && <div>Error signing message</div>}
             </div>
-
-            <div>
-              <SendMTransaction state={state} />
-              <WriteTransaction state={state} />
-            </div>
-            <div
-              className="cursor-pointer p-2 rounded bg-red-200 "
-              onClick={newWallet}
-            >
-              NewWallet
-            </div>
-            {isSignSuccess && <div>Signature: {signData}</div>}
-            {isSignError && <div>Error signing message</div>}
-          </div>
+          </>
         )}
       </header>
     </div>

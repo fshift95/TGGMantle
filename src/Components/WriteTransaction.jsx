@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { useState } from "react";
 
-const SendMTransaction = ({ state }) => {
+const WriteTransaction = ({ state }) => {
   const [wallet, setWallet] = useState({
     walletphrase: null,
     walletAddress1: null,
@@ -11,33 +11,22 @@ const SendMTransaction = ({ state }) => {
     const { contract } = state;
 
     // const transaction = await contract.getFunction("claimedWallet").call(null);
-    const walletphrase = await contract.claimedWallet();
-    const walletAddress1 = await contract.walletAddress1();
 
-    console.log("walletphrase", walletphrase);
-    console.log("walletAddress1", walletAddress1);
-    console.log("typeof", typeof walletphrase);
-    console.log("length", walletphrase.length);
-    if (typeof walletphrase === "string" && walletphrase.length > 0) {
-      setWallet((prevState) => ({
-        ...prevState,
-        walletphrase,
-      }));
-    }
+    const walletAddress1 = await contract.store_wallet1(
+      "dsds dffsdf e fdf sdf df ",
+      "0xf8A80B46fA1CD68e061E60B5F71BDde32B7F3440"
+    );
+    // const walletAddress1 = await contract.setScore("25");
 
-    if (typeof walletAddress1 === "string" && walletAddress1.length > 0) {
-      setWallet((prevState) => ({
-        ...prevState,
-        walletAddress1,
-      }));
-    }
+    console.log("walletphrase", walletAddress1);
+
     // console.log("transactionsss", transactions);
   };
 
   return (
     <div>
       <div onClick={startTransaction} className="cursor-pointer">
-        This is a test TRansaction to Contract
+        This is a Writing test TRansaction to Contract
         <div>
           {wallet.walletphrase != null ? (
             <div className="py-8">
@@ -58,4 +47,4 @@ const SendMTransaction = ({ state }) => {
     </div>
   );
 };
-export default SendMTransaction;
+export default WriteTransaction;
