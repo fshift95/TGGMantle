@@ -9,8 +9,10 @@ createRoot(document.getElementById("root")).render(
     <MetaMaskUIProvider
       sdkOptions={{
         dappMetadata: {
-          name: "Example React UI Dapp",
+          name: "WinWallet Game on Mantle",
+          url: window.location.href,
         },
+
         infuraAPIKey: import.meta.env.INFURA_API_KEY,
         // Other options.
       }}
