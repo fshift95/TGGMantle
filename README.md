@@ -1,8 +1,10 @@
-# React + Vite
+WinWallet Game!
+Answer some question about web3 and Mantle anf win a prefunded wallet!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+telegram demo link:
+https://t.me/MantleHackathonGameBot/WWM
 
-Currently, two official plugins are available:
+demo web:
+https://winwallet-kvgk7mr4a-fshifts-projects-02f1e065.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Untitled-1](https://github.com/user-attachments/assets/da21f84c-7f21-434c-abe0-de5f4a28caf5)
