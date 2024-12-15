@@ -4,17 +4,21 @@ import { useState } from "react";
 const QCard = (props) => {
   if (props.visibility == props.number) {
     console.log("number", props.number);
+    const selectedButtonStyle =
+      "btn bg-lime-100 rounded-xl w-2/3 text-left text-lime-700 border-slate-800";
     console.log("visibility", props.visibility);
     return (
-      <div className="   bg-base-300 py-4 h-96 shadow-xl w-full flex flex-col  z-10 p-4">
-        <div className="font-bold text-xl pb-8">{props.question}</div>
+      <div className="   bg-base-200/75 py-4 h-96 shadow-inner  w-full flex flex-col  z-10 p-4">
+        <div className="font-bold text-xl pb-8 text-lime-600 ">
+          {props.question}
+        </div>
 
         <div className="flex flex-col justify-center items-center gap-y-4">
           <button
             className={
               props.answered === "a"
-                ? "btn btn-accent rounded-xl w-2/3 text-left"
-                : "btn btn-primary rounded-xl w-2/3 text-left"
+                ? selectedButtonStyle
+                : "btn btn-primary  rounded-xl w-2/3 text-left "
             }
             onClick={() => {
               props.answerRegister("a");
@@ -25,7 +29,7 @@ const QCard = (props) => {
           <button
             className={
               props.answered === "b"
-                ? "btn btn-accent rounded-xl w-2/3 text-left"
+                ? selectedButtonStyle
                 : "btn btn-primary rounded-xl w-2/3 text-left"
             }
             onClick={() => {
@@ -37,7 +41,7 @@ const QCard = (props) => {
           <button
             className={
               props.answered === "c"
-                ? "btn btn-accent rounded-xl w-2/3 text-left"
+                ? selectedButtonStyle
                 : "btn btn-primary rounded-xl w-2/3 text-left"
             }
             onClick={() => {
@@ -49,7 +53,7 @@ const QCard = (props) => {
           <button
             className={
               props.answered === "d"
-                ? "btn btn-accent rounded-xl w-2/3 text-left"
+                ? selectedButtonStyle
                 : "btn btn-primary rounded-xl w-2/3 text-left"
             }
             onClick={() => {

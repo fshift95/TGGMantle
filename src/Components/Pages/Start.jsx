@@ -4,14 +4,17 @@ import { useState } from "react";
 const Start = (props) => {
   return (
     <div className="bg-custom md:w-1/2 w-full bg-white h-screen flex flex-col justify-between items-center">
-      <div className="pt-4 flex flex-col">
-        <div className=" text-3xl font-bold"> Welcome to Win Wallet Game</div>
-        <div className="pb-4 text-gray-500 ">
+      <div className="pt-4 flex flex-col gfont3">
+        <div className=" text-3xl font-bold text-center pt-4 ">
+          {" "}
+          Welcome to Win Wallet Game
+        </div>
+        <div className="pb-4 text-gray-500 text-center">
           {" "}
           This Game (Dapp) has been developed for Mantle Hackathon
         </div>
         <div
-          className="btn  mt-12"
+          className="btn  mt-12 "
           onClick={() => {
             props.changePage(1);
           }}

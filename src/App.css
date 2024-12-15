@@ -2,8 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* font-family: 'CARTOON FREE', sans-serif; */
+@font-face {
+  font-family: gfont1;
+  src: url(./assets/fonts/crackman/Crackman.otf);
+}
+@font-face {
+  font-family: gfont2;
+  src: url(./assets/fonts/good-timing/goodtimingbd.otf);
+}
+@font-face {
+  font-family: gfont3;
+  src: url(./assets/fonts/press-start/prstartk.ttf);
+}
+@font-face {
+  font-family: gfont4;
+  src: url(./assets/fonts/xirod/Xirod.otf);
+}
+@font-face {
+  font-family: gfont5;
+  src: url(./assets/fonts/stormfaze/Stormfaze.otf);
+}
+.gfont1 {
+  font-family: "gfont1";
+}
+.gfont2 {
+  font-family: "gfont2";
+}
+.gfont3 {
+  font-family: "gfont3";
+}
+.gfont4 {
+  font-family: "gfont4";
+}
+.gfont5 {
+  font-family: "gfont5";
+}
+
 #root {
   width: 100%;
+}
+
+.cartoon-font {
+  font-family: "CARTOON FREE", sans-serif;
 }
 
 .bg-custom {

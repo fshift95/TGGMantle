@@ -5,6 +5,8 @@ import "./index.css";
 import App from "./App.jsx";
 import { MetaMaskUIProvider } from "@metamask/sdk-react-ui";
 import SendMTransaction from "./Components/SendTransaction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -20,6 +22,7 @@ createRoot(document.getElementById("root")).render(
       }}
     >
       <App />
+      <ToastContainer />
     </MetaMaskUIProvider>
   </StrictMode>
 );
