@@ -16,6 +16,7 @@ import SendMTransaction from "./Components/SendTransaction";
 import WriteTransaction from "./Components/WriteTransaction";
 import Start from "./Components/Pages/Start";
 import Page1 from "./Components/Pages/Page1";
+import Page20 from "./Components/Pages/TutWallet/Page20";
 
 // const privateKey = generatePrivateKey();
 // const account = privateKeyToAccount(`${privateKey}`);
@@ -131,6 +132,7 @@ function AppReady(customeProvider) {
     <div className="App  w-full flex flex-col jestify-center items-center">
       {page.pageNumber == 0 ? <Start changePage={changePage} /> : null}
       {page.pageNumber == 1 ? <Page1 changePage={changePage} /> : null}
+      {page.pageNumber == 20 ? <Page20 changePage={changePage} /> : null}
       <header className="App-header w-full">
         {/* <MetaMaskButton theme={"light"} color="white"></MetaMaskButton> */}
         {isConnected && (
